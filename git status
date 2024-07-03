@@ -1,0 +1,258 @@
+[1mdiff --git a/backend/index.js b/backend/index.js[m
+[1mindex c998a23..4688d12 100644[m
+[1m--- a/backend/index.js[m
+[1m+++ b/backend/index.js[m
+[36m@@ -1,5 +1,5 @@[m
+ const express = require("express");[m
+[31m-const {mainRouter} = require("./routes/index")[m
+[32m+[m[32mconst mainRouter = require("./routes/index")[m
+ const app = express();[m
+ const cors = require("cors")[m
+ const PORT = 3000;[m
+[1mdiff --git a/backend/package-lock.json b/backend/package-lock.json[m
+[1mindex 84ce234..b037270 100644[m
+[1m--- a/backend/package-lock.json[m
+[1m+++ b/backend/package-lock.json[m
+[36m@@ -11,8 +11,9 @@[m
+       "dependencies": {[m
+         "cors": "^2.8.5",[m
+         "express": "^4.18.2",[m
+[32m+[m[32m        "jsonwebtoken": "^9.0.2",[m
+         "mongoose": "^8.4.4",[m
+[31m-        "zod": "^3.22.4"[m
+[32m+[m[32m        "zod": "^3.23.8"[m
+       }[m
+     },[m
+     "node_modules/@mongodb-js/saslprep": {[m
+[36m@@ -84,6 +85,11 @@[m
+         "node": ">=16.20.1"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/buffer-equal-constant-time": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA=="[m
+[32m+[m[32m    },[m
+     "node_modules/bytes": {[m
+       "version": "3.1.2",[m
+       "resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",[m
+[36m@@ -187,6 +193,14 @@[m
+         "npm": "1.2.8000 || >= 1.4.16"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/ecdsa-sig-formatter": {[m
+[32m+[m[32m      "version": "1.0.11",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",[m
+[32m+[m[32m      "integrity": "sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "safe-buffer": "^5.0.1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/ee-first": {[m
+       "version": "1.1.1",[m
+       "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",[m
+[36m@@ -403,6 +417,51 @@[m
+         "node": ">= 0.10"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/jsonwebtoken": {[m
+[32m+[m[32m      "version": "9.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRp66vJ865SSqOlgqS8hujT5U4AOgMfhrwYIuIhfKaoSCZcirrmASQr8CX7cUg+RMih+hgznrjp99o+W4pJLHQ==",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "jws": "^3.2.2",[m
+[32m+[m[32m        "lodash.includes": "^4.3.0",[m
+[32m+[m[32m        "lodash.isboolean": "^3.0.3",[m
+[32m+[m[32m        "lodash.isinteger": "^4.0.4",[m
+[32m+[m[32m        "lodash.isnumber": "^3.0.3",[m
+[32m+[m[32m        "lodash.isplainobject": "^4.0.6",[m
+[32m+[m[32m        "lodash.isstring": "^4.0.1",[m
+[32m+[m[32m        "lodash.once": "^4.0.0",[m
+[32m+[m[32m        "ms": "^2.1.1",[m
+[32m+[m[32m        "semver": "^7.5.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=12",[m
+[32m+[m[32m        "npm": ">=6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/jsonwebtoken/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/jwa": {[m
+[32m+[m[32m      "version": "1.4.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/jwa/-/jwa-1.4.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "buffer-equal-constant-time": "1.0.1",[m
+[32m+[m[32m        "ecdsa-sig-formatter": "1.0.11",[m
+[32m+[m[32m        "safe-buffer": "^5.0.1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/jws": {[m
+[32m+[m[32m      "version": "3.2.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/jws/-/jws-3.2.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "jwa": "^1.4.1",[m
+[32m+[m[32m        "safe-buffer": "^5.0.1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/kareem": {[m
+       "version": "2.6.3",[m
+       "resolved": "https://registry.npmjs.org/kareem/-/kareem-2.6.3.tgz",[m
+[36m@@ -411,6 +470,41 @@[m
+         "node": ">=12.0.0"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/lodash.includes": {[m
+[32m+[m[32m      "version": "4.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.isboolean": {[m
+[32m+[m[32m      "version": "3.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Bz5mupy2SVbPHURB98VAcw+aHh4vRV5IPNhILUCsOzRmsTmSQ17jIuqopAentWoehktxGd9e/hbIXq980/1QJg=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.isinteger": {[m
+[32m+[m[32m      "version": "4.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-DBwtEWN2caHQ9/imiNeEA5ys1JoRtRfY3d7V9wkqtbycnAmTvRRmbHKDV4a0EYc678/dia0jrte4tjYwVBaZUA=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.isnumber": {[m
+[32m+[m[32m      "version": "3.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-QYqzpfwO3/CWf3XP+Z+tkQsfaLL/EnUlXWVkIk5FUPc4sBdTehEqZONuyRt2P67PXAk+NXmTBcc97zw9t1FQrw=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.isplainobject": {[m
+[32m+[m[32m      "version": "4.0.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz",[m
+[32m+[m[32m      "integrity": "sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.isstring": {[m
+[32m+[m[32m      "version": "4.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-0wJxfxH1wgO3GrbuP+dTTk7op+6L41QCXbGINEmD+ny/G/eCqGzxyCsh7159S+mgDDcoarnBw6PC1PS5+wUGgw=="[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.once": {[m
+[32m+[m[32m      "version": "4.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg=="[m
+[32m+[m[32m    },[m
+     "node_modules/media-typer": {[m
+       "version": "0.3.0",[m
+       "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",[m
+[36m@@ -720,6 +814,17 @@[m
+       "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",[m
+       "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="[m
+     },[m
+[32m+[m[32m    "node_modules/semver": {[m
+[32m+[m[32m      "version": "7.6.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/semver/-/semver-7.6.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==",[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "semver": "bin/semver.js"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/send": {[m
+       "version": "0.18.0",[m
+       "resolved": "https://registry.npmjs.org/send/-/send-0.18.0.tgz",[m
+[36m@@ -892,9 +997,9 @@[m
+       }[m
+     },[m
+     "node_modules/zod": {[m
+[31m-      "version": "3.22.4",[m
+[31m-      "resolved": "https://registry.npmjs.org/zod/-/zod-3.22.4.tgz",[m
+[31m-      "integrity": "sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==",[m
+[32m+[m[32m      "version": "3.23.8",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/zod/-/zod-3.23.8.tgz",[m
+[32m+[m[32m      "integrity": "sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==",[m
+       "funding": {[m
+         "url": "https://github.com/sponsors/colinhacks"[m
+       }[m
+[1mdiff --git a/backend/package.json b/backend/package.json[m
+[1mindex 06a04f5..24914d2 100644[m
+[1m--- a/backend/package.json[m
+[1m+++ b/backend/package.json[m
+[36m@@ -12,7 +12,8 @@[m
+   "dependencies": {[m
+     "cors": "^2.8.5",[m
+     "express": "^4.18.2",[m
+[32m+[m[32m    "jsonwebtoken": "^9.0.2",[m
+     "mongoose": "^8.4.4",[m
+[31m-    "zod": "^3.22.4"[m
+[32m+[m[32m    "zod": "^3.23.8"[m
+   }[m
+ }[m
+[1mdiff --git a/backend/routes/index.js b/backend/routes/index.js[m
+[1mindex d38915d..75a2e69 100644[m
+[1m--- a/backend/routes/index.js[m
+[1m+++ b/backend/routes/index.js[m
+[36m@@ -1,6 +1,5 @@[m
+ const express = require("express");[m
+[31m-import userRouter from "./user"[m
+[31m-[m
+[32m+[m[32mconst userRouter = require("./user")[m
+ const router = express.Router();[m
+ [m
+ router.use("/user",userRouter );[m
+[1mdiff --git a/backend/routes/user.js b/backend/routes/user.js[m
+[1mindex 2ebe947..f16968a 100644[m
+[1m--- a/backend/routes/user.js[m
+[1m+++ b/backend/routes/user.js[m
+[36m@@ -1,5 +1,47 @@[m
+ const express = require('express');[m
+[32m+[m[32mconst zod = require('zod')[m
+[32m+[m[32mconst {User}  =require("../db");[m
+[32m+[m[32mconst { JWT_Secret } = require('../config');[m
+[32m+[m[32mconst router = express.Router();[m
+[32m+[m[32m// const mongoose =require("mongoose")[m
+[32m+[m[32mconst jwt = require("jsonwebtoken")[m
+[32m+[m[32mconst authMiddleWare = require("../middleware")[m
+ [m
+[31m-const router = express.Router()[m
+[32m+[m[32mconst signupSchema = zod.object({[m
+[32m+[m[32m    username: zod.string(),[m
+[32m+[m[32m    password: zod.string(),[m
+[32m+[m[32m    firstName: zod.string(),[m
+[32m+[m[32m    lastName: zod.string()[m
+[32m+[m[32m})[m
+[32m+[m
+[32m+[m[32mrouter.post("/signup",async (req,res)=>{[m
+[32m+[m[32m    const body = req.body;[m
+[32m+[m[32m    const {success} = signupSchema.safeParse(body);[m
+[32m+[m[32m    if (!success){[m
+[32m+[m[32m        return res.json({[m
+[32m+[m[32m            message:"Email Already in Use/ Incorrect Inputs Make Sure  username doesnt have Capital Letters and Password has more than 6 Characters"[m
+[32m+[m[32m        })[m
+[32m+[m[32m    };[m
+[32m+[m[32m    const existingUser = await User.findOne({[m
+[32m+[m[32m        username: req.body.username[m
+[32m+[m[32m    });[m
+[32m+[m[32m    if(existingUser){[m
+[32m+[m[32m        return res.status(411).json({[m
+[32m+[m[32m            message:"Email Already in Use/ Incorrect Inputs"[m
+[32m+[m[32m        })[m
+[32m+[m[32m    };[m
+[32m+[m[32m    const user = await User.create({[m
+[32m+[m[32m        username:req.body.username,[m
+[32m+[m[32m        password:req.body.password,[m
+[32m+[m[32m        firstName:req.body.firstName,[m
+[32m+[m[32m        lastName:req.body.lastName,[m
+[32m+[m[32m    });[m
+[32m+[m[32m    const userId = user._id;[m
+[32m+[m[32m    const token =jwt.sign({userId},JWT_Secret)[m
+[32m+[m[32m    res.json({[m
+[32m+[m[32m        message:"User added Successfully",[m
+[32m+[m[32m        token: token[m
+[32m+[m[32m    });[m
+[32m+[m[32m})[m
+ [m
+ module.exports = router;[m
+\ No newline at end of file[m
