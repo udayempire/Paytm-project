@@ -11,14 +11,13 @@ const authMiddleWare = (req,res,next)=>{
     const jwtToken = authHeader.split(" ")[1];
     try{
         const decodedValue = jwt.verify(jwtToken,JWT_Secret);
-        req.userId = decodedValue.userId;
+        req.userId = decodedValue.userId;  //passing UserId with the middleware so people using this middleWare can retrive userId
         next()
     }
     catch(err){
         return res.status(403).json({
             message:"Signin again"
-    })
-    }
+    })}
 }
 
 module.exports= authMiddleWare
