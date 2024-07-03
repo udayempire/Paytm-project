@@ -3,7 +3,6 @@ const zod = require('zod')
 const {User}  =require("../db");
 const { JWT_Secret } = require('../config');
 const router = express.Router();
-// const mongoose =require("mongoose")
 const jwt = require("jsonwebtoken")
 const authMiddleWare = require("../middleware")
 
@@ -18,7 +17,7 @@ router.post("/signup",async (req,res)=>{
     const body = req.body;
     const {success} = signupSchema.safeParse(body);
     if (!success){
-        return res.json({
+        return res.status(403).json({
             message:"Email Already in Use/ Incorrect Inputs Make Sure  username doesnt have Capital Letters and Password has more than 6 Characters"
         })
     };
@@ -42,6 +41,32 @@ router.post("/signup",async (req,res)=>{
         message:"User added Successfully",
         token: token
     });
+});
+const updateSchema = zod.object({
+    password:zod.string().optional(),
+    firstName:zod.string().optional(),
+    lastName:zod.string().optional(),
+})
+
+router.put("/", authMiddleWare, async (req,res)=>{
+    const {success}= updateSchema.safeParse(req.body);
+    console.log(req.body)
+    if(!success){
+        return res.status(403).json({
+            message:"Wrong Input Values"
+        });
+    }
+    try{
+        await User.updateOne({_id: req.userId},req.body)
+        res.json({
+            message:"User Updated Successfully"
+        })  
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            message:"Internal Server Error"
+        })
+    }
 })
 
 module.exports = router;
