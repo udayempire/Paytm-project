@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true,
+        trim: true, //if there is space in first or last of any name it will trim it down.
         lowercase: true,
         minLength:3,
         maxLength:30
@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
 
 const accountSchema = mongoose.Schema({
     userId: {
-        type:mongoose.Schema.ObjectId, //Reference to User Model
+        type:mongoose.Schema.Types.ObjectId, //Reference to User Model
         ref: "User",
         required: true
     },
@@ -46,6 +46,6 @@ const accountSchema = mongoose.Schema({
 })
 
 const User = mongoose.model('User',userSchema);
-const Amount = mongoose.model("Amount",accountSchema)
+const Account = mongoose.model("Amount",accountSchema)
 
-module.exports= {User,Amount}
+module.exports= {User,Account}
