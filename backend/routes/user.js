@@ -1,12 +1,13 @@
 const express = require('express');
 const zod = require('zod')
-const {User}  =require("../db");
+const {User ,Account}  =require("../db");
 const { JWT_Secret } = require('../config');
 const router = express.Router();
 const jwt = require("jsonwebtoken")
 const authMiddleWare = require("../middleware")
 
-const signupSchema = zod.object({
+//zod are for end userInputs! like req.body etc
+const signupBody = zod.object({
     username: zod.string(),
     password: zod.string(),
     firstName: zod.string(),
@@ -15,7 +16,7 @@ const signupSchema = zod.object({
 
 router.post("/signup",async (req,res)=>{
     const body = req.body;
-    const {success} = signupSchema.safeParse(body);
+    const {success} = signupBody.safeParse(body);
     if (!success){
         return res.status(403).json({
             message:"Email Already in Use/ Incorrect Inputs Make Sure  username doesnt have Capital Letters and Password has more than 6 Characters"
@@ -36,20 +37,27 @@ router.post("/signup",async (req,res)=>{
         lastName:req.body.lastName,
     });
     const userId = user._id;
+
+    await Account.create({
+        userId,
+        balance: 1+ Math.random()*10000
+    })
     const token =jwt.sign({userId},JWT_Secret)
     res.json({
         message:"User added Successfully",
         token: token
     });
+    // creatung User Account
+    
 });
-const updateSchema = zod.object({
+const updateBody = zod.object({
     password:zod.string().optional(),
     firstName:zod.string().optional(),
     lastName:zod.string().optional(),
 })
 
 router.put("/", authMiddleWare, async (req,res)=>{
-    const {success}= updateSchema.safeParse(req.body);
+    const {success}= updateBody.safeParse(req.body);
     console.log(req.body)
     if(!success){
         return res.status(403).json({
@@ -67,6 +75,27 @@ router.put("/", authMiddleWare, async (req,res)=>{
             message:"Internal Server Error"
         })
     }
-})
+});
 
+router.get("/bulk",authMiddleWare, async (req,res)=>{
+    const filter =req.query.filter || "";
+    const users = await User.find({
+        $or:[{
+            firstName:{
+                '$regex': filter
+            },
+            lastName: {
+                '$regex': filter
+            }
+        }]
+    })
+    res.json({
+        user: users.map(user =>({
+            user: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            _id: user._id
+        }))
+    })
+})
 module.exports = router;
