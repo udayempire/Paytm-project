@@ -77,13 +77,14 @@ router.put("/", authMiddleWare, async (req,res)=>{
     }
 });
 
-router.get("/bulk",authMiddleWare, async (req,res)=>{
-    const filter =req.query.filter || "";
+router.get("/bulk", async (req,res)=>{
+    const filter = req.query.filter || "";
     const users = await User.find({
         $or:[{
             firstName:{
                 '$regex': filter
-            },
+            }
+            },{
             lastName: {
                 '$regex': filter
             }
