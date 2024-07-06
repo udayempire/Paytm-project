@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost:27017/paytm")
+mongoose.connect("mongodb+srv://admin:uday6207592112@cluster0.ib11rsi.mongodb.net/paytm")
 .then(()=>{console.log("Connected to MongoDb Successfully")})
 .catch(()=>{console.log("Failed Connecting to MongoDb")})
 
