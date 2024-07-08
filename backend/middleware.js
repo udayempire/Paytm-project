@@ -13,6 +13,7 @@ const authMiddleWare = (req,res,next)=>{
         const decodedValue = jwt.verify(jwtToken,JWT_Secret);
         req.userId = decodedValue.userId;  //passing UserId with the middleware so people using this middleWare can retrive userId
         req.username = decodedValue.username; 
+
         next()
     }
     catch(err){

@@ -8,12 +8,7 @@ app.use(cors());
 app.use(express.json()); //body-parser to support json files
 app.use("/api/v1",mainRouter );
 
-
-
 app.listen(PORT, ()=>{
     console.log(`Server is running on PORT ${PORT}`)
 })
-
-
-
 
