@@ -1,4 +1,7 @@
+import { Button } from "./Button"
+import {useNavigate} from "react-router-dom"
 export function Appbar() {
+    const navigate= useNavigate()
     return <div className="shadow flex justify-between h-14 border-solid  rounded ">
         <div className="flex flex-col justify-center h-full ml-4 font-bold">
             PayTM App
@@ -12,6 +15,12 @@ export function Appbar() {
                     U
                 </div>
             </div>
+            <Button onClick={()=>{
+                localStorage.removeItem("token")
+                navigate("/signin")
+            }}
+
+            label={"Logout"} className="m-2" />
         </div>
     </div>
 }

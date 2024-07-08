@@ -9,8 +9,7 @@ import axios from "axios"
 
 export const Send=()=>{
     const [searchParams]=useSearchParams()
-    const id = searchParams.get("id")
-    console.log(id)
+    const username = searchParams.get("username")
     const[amount,setAmount]=useState("")
 
     return <div className="bg-gray-800 p-0 m-0 flex justify-center items-center w-screen h-screen ">
@@ -25,7 +24,7 @@ export const Send=()=>{
             }}label="Amount (In Rs)" placeholder="Enter Amount" />
             <Button onClick={()=>{
                 axios.post("http://localhost:3000/api/v1/account/transfer", {
-                    to: id,
+                    to: username,
                     amount :amount
                 },{
                     headers:{

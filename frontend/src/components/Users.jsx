@@ -50,7 +50,7 @@ function User({ user }) {
         </div >
         <div className="mr-4 p-4">
             <Button onClick={()=>{
-                navigate("/send?id="+ user._id + "&name=" + user.firstName)
+                navigate("/send?name="+ user.firstName + "&username=" + user.username)
             }} label="Send Money" />
         </div>
     </div>
