@@ -12,7 +12,6 @@ function InputBox({ placeholder,onChange}) {
 export const Users = () => {
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("")
-    // const [filter,setFilter] = useState("")
     useEffect(() => {
         axios.get("http://localhost:3000/api/v1/user/bulk?filter="+ filter)
             .then(response => {

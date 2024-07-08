@@ -1,19 +1,23 @@
-export function Balance({ label }) {
+// import useSearchParams from "react-router-dom"
+import {useState,useEffect} from "react"
+import axios from "axios"
+export const Balance=()=> {
+    // const searchParam = useSearchParams()
+    const [balance,setBalance] = useState("")
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/v1/account/balance",{
+            headers:{
+                Authorization: localStorage.getItem("token")
+            }
+        })
+         .then(response=>{
+            setBalance(response.data.Balance)
+        })
+    },[balance]) 
+
     return <div>
         <div className="my-4 mx-1 font-bold">
-            Your Balance:-  ₹{label}
+            Your Balance:- {balance}
         </div>
     </div>
 }
-// import {useState} from "react"
-// import axios from "axios"
-// import useSearchParams from "react-router-dom"
-// export const Balance({label}){
-//     const[balance,setBalance]= useState("")
-
-//     useEffect(async ()=>{
-//         await axios.get("")
-
-//     })
-    
-// }
