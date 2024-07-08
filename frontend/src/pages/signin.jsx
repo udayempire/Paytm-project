@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom"
 
 export const Signin=()=>{
     const navigate = useNavigate()
-
+    
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
     return <div className="bg-gray-800 p-0 m-0 flex justify-center items-center w-screen h-screen ">

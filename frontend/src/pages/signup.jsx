@@ -47,8 +47,6 @@ export const Signup=()=>{
                 navigate("/dashboard?username="+ username)
 
             }} label= "Signup" />
-
-
             {/* signin button below */}
             <ButtonWarning label="Already Have an Account?" buttonText="Sign In" to="/signin"></ButtonWarning> 
             </div> 
