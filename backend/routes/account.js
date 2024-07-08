@@ -20,7 +20,8 @@ router.post("/transfer",authMiddleWare,async (req,res)=>{
     const {amount,to} = req.body;
 
     //Fetch The toaccount within the transaction
-    const account = await Account.findOne({userId: req.userId}).session(session)
+    const account = await Account.findOne({username: req.username}).session(session)
+
 
     if(!account || account.balance<amount){
         await session.abortTransaction();
@@ -28,8 +29,8 @@ router.post("/transfer",authMiddleWare,async (req,res)=>{
             message: "Insufficent Balance"
         })
     };
-    const toAccount = await Account.findOne({userId: to}).session(session)
-    console.log(!toAccount)
+    const toAccount = await Account.findOne({username: to}).session(session)
+
 
     if(!toAccount){
         await session.abortTransaction();
@@ -38,8 +39,8 @@ router.post("/transfer",authMiddleWare,async (req,res)=>{
         })
     };
     // Perform the Transfer
-    await Account.updateOne({userId: req.userId}, {$inc:{balance: -amount}}).session(session)
-    await Account.updateOne({userId: to}, {$inc:{balance:amount}}).session(session) // "to" we get from req.body which is defined above here.
+    await Account.updateOne({username: req.username}, {$inc:{balance: -amount}}).session(session)
+    await Account.updateOne({username: to}, {$inc:{balance:amount}}).session(session) // "to" we get from req.body which is defined above here.
 
     await session.commitTransaction();
     res.json({

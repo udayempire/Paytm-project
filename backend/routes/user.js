@@ -40,17 +40,19 @@ router.post("/signup",async (req,res)=>{
         lastName:req.body.lastName,
     });
     const userId = user._id;
+    const username = user.username
 
     await Account.create({
         userId,
+        username,
         balance: 1+ Math.random()*10000
     })
-    const token =jwt.sign({userId},JWT_Secret)
+    const token =jwt.sign({userId,username},JWT_Secret)
     res.json({
         message:"User added Successfully",
         token: token
     });
-    // creatung User Account
+    // creating User Account
     
 });
 // creating Signin route
@@ -76,7 +78,8 @@ router.post("/signin", async(req,res)=>{
         }) 
     }
     const userId = existingUser._id 
-    const token = jwt.sign({userId},JWT_Secret)
+    const username = existingUser.username
+    const token = jwt.sign({userId,username},JWT_Secret)
     res.send({
         message:"Login Successfull Congrats",
         token: token
