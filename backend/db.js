@@ -5,6 +5,15 @@ mongoose.connect("mongodb+srv://admin:uday6207592112@cluster0.ib11rsi.mongodb.ne
 
 
 const userSchema = mongoose.Schema({
+    emailAddress: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        minLength: 3,
+        maxlength:100
+    },
     username: {
         type: String,
         required: true,

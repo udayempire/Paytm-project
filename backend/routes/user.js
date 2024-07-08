@@ -6,8 +6,10 @@ const router = express.Router();
 const jwt = require("jsonwebtoken")
 const authMiddleWare = require("../middleware")
 
+
 //zod are for end userInputs! like req.body etc
 const signupBody = zod.object({
+    emailAddress : zod.string().email(),
     username: zod.string(),
     password: zod.string(),
     firstName: zod.string(),
@@ -31,6 +33,7 @@ router.post("/signup",async (req,res)=>{
         })
     };
     const user = await User.create({
+        emailAddress:req.body.emailAddress,
         username:req.body.username,
         password:req.body.password,
         firstName:req.body.firstName,
@@ -50,6 +53,36 @@ router.post("/signup",async (req,res)=>{
     // creatung User Account
     
 });
+// creating Signin route
+const signinBody= zod.object({
+    username:zod.string(),
+    password:zod.string()
+});
+
+router.post("/signin", async(req,res)=>{
+    const {success} = signinBody.safeParse(req.body)
+    if(!success){
+        return res.status(403).json({
+            message:"Wrong Values input"
+        })
+    }
+    const existingUser = await User.findOne({
+        username: req.body.username,
+        password: req.body.password,
+    })
+    if(!existingUser){
+        return res.status(403).json({
+            message:"User Doesnt Exist Please Signup First!"
+        }) 
+    }
+    const userId = existingUser._id 
+    const token = jwt.sign({userId},JWT_Secret)
+    res.send({
+        message:"Login Successfull Congrats",
+        token: token
+    })
+})
+
 const updateBody = zod.object({
     password:zod.string().optional(),
     firstName:zod.string().optional(),
@@ -58,7 +91,6 @@ const updateBody = zod.object({
 
 router.put("/", authMiddleWare, async (req,res)=>{
     const {success}= updateBody.safeParse(req.body);
-    console.log(req.body)
     if(!success){
         return res.status(403).json({
             message:"Wrong Input Values"
@@ -92,7 +124,8 @@ router.get("/bulk", async (req,res)=>{
     })
     res.json({
         user: users.map(user =>({
-            user: user.username,
+            emailAddress: user.emailAddress,
+            username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
             _id: user._id
