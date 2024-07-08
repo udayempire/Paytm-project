@@ -6,7 +6,7 @@ const {mongoose} =require("mongoose")
 
 router.get("/balance",authMiddleWare,async (req,res)=>{
     const account = await Account.findOne({
-        userId:req.userId,
+        username:req.username, //fetched using authMiddleware
     })
     res.json({
         Balance: account.balance
