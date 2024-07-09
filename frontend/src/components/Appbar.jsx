@@ -11,7 +11,7 @@ export const Appbar=()=> {
                 Authorization: localStorage.getItem("token")
             }
         }).then(response=>{
-            setUser(response.data.user.firstName)
+            setUser(response.data.user)
 
         })
     },[user])
