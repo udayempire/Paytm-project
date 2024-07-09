@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { Signup } from "./pages/signup"
-import { Signin } from "./pages/signin"
-import { Dashboard } from "./pages/dashboard"
-import { Send } from "./pages/send"
-import { Button } from "../src/components/Button"
+import { Signup } from "./pages/signup";
+import { Signin } from "./pages/signin";
+import { Dashboard } from "./pages/dashboard";
+import { Send } from "./pages/send";
+import { Profile } from "./pages/profile";
+import { Button } from "../src/components/Button";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/send" element={<Send />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -9,13 +9,13 @@ export const Balance=()=> {
             }
         })
          .then(response=>{
-            setBalance(response.data.Balance)
+            setBalance(response.data.Balance.toFixed(2))
         })
     },[balance]) 
 
     return <div>
         <div className="my-4 mx-1 font-bold">
-            Your Balance:- {balance}
+            Your Balance:- ₹{balance}
         </div>
     </div>
 }

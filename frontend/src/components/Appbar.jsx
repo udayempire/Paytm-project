@@ -4,28 +4,27 @@ import {useNavigate} from "react-router-dom"
 import axios from "axios"
 export const Appbar=()=> {
     const navigate= useNavigate()
-    const [user,setUser]=useState("")
+    const [firstName,setFirstName]=useState("")
     useEffect(()=>{
         axios.get("http://localhost:3000/api/v1/user/currentUser",{
             headers:{
                 Authorization: localStorage.getItem("token")
             }
         }).then(response=>{
-            setUser(response.data.user)
-
+            setFirstName(response.data.firstName)
         })
-    },[user])
+    },[firstName])
     return <div className="shadow flex justify-between h-14 border-solid  rounded ">
         <div className="flex flex-col justify-center h-full ml-4 font-bold">
             PayTM App
         </div>
         <div className="flex">
-            <div className="flex flex-col justify-center mr-4 font-bold">
-                Hello, {user}
+            <div className="flex flex-col justify-center mr-4 font-bold" >
+                Welcome, {firstName}
             </div>
             <div className="flex flex-col justify-center bg-blue-400 rounded-full h-10 w-10 m-2 cursor-pointer" >
-                <div className="flex flex-col justify-center text-center font-bold">
-                    {user[0]}
+                <div className="flex flex-col justify-center text-center font-bold" onClick={()=>{navigate("/profile?name="+firstName)}}>
+                    {firstName[0]}
                 </div>
             </div>
             <Button onClick={()=>{

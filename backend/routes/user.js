@@ -85,7 +85,7 @@ router.post("/signin", async (req, res) => {
         token: token
     })
 })
-
+//Update User 
 const updateBody = zod.object({
     password: zod.string().optional(),
     firstName: zod.string().optional(),
@@ -93,14 +93,24 @@ const updateBody = zod.object({
 })
 
 router.put("/", authMiddleWare, async (req, res) => {
-    const { success } = updateBody.safeParse(req.body);
+    const { success,data } = updateBody.safeParse(req.body);
     if (!success) {
         return res.status(403).json({
             message: "Wrong Input Values"
         });
     }
+    const updateData={}
+    if(data.password){
+        updateData.password=data.password
+    }
+    if(data.firstName){
+        updateData.firstName=data.firstName
+    }
+    if(data.lastName){
+        updateData.lastName=data.lastName
+    }
     try {
-        await User.updateOne({ _id: req.userId }, req.body)
+        await User.updateOne({ username: req.username }, {$set: updateData})
         res.json({
             message: "User Updated Successfully"
         })
@@ -116,7 +126,9 @@ router.get("/currentUser",authMiddleWare, async (req,res)=>{
         username: req.username
     })
     res.json({
-        user: user.firstName
+    firstName:user.firstName,
+    lastName:user.lastName,
+    username:user.username
     })
 })
 router.get("/bulk", async (req, res) => {
