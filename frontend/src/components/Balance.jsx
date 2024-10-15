@@ -20,9 +20,7 @@ export const Balance = () => {
         <div className="flex mt-4 justify-center ">
             <div className="shadow-lg rounded-lg p-6 w-full max-w-sm bg-white">
                 <div className="flex items-center gap-3">
-                    {/* Wallet Icon */}
                     <FaWallet className="text-blue-500 text-4xl" />
-                    {/* Balance Label */}
                     <div>
                         <p className="text-gray-500 text-sm font-medium">Available Balance</p>
                         <h1 className="text-xl font-bold text-gray-900">₹ {balance}</h1>

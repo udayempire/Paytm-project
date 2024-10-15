@@ -31,10 +31,10 @@ export const Appbar = () => {
                 QuickPay
             </div>
 
-            <div className="flex items-center space-x-6 relative">
+            <div className="flex items-center gap-5 relative">
                 {/* Welcome Message */}
-                <div className="text-white font-medium">
-                    Welcome, {firstName}
+                <div className="text-white font-medium ">
+                    Welcome {firstName}
                 </div>
 
                 {/* Avatar and Dropdown */}
@@ -46,7 +46,6 @@ export const Appbar = () => {
                         {firstName[0]}
                     </div>
 
-                    {/* Conditionally render dropdown */}
                     {isDropDownVisible && (
                         <div className="absolute right-0 mt-2 w-44">
                             <ProfileDropDown firstName={firstName} lastName={lastName} email={email} />
