@@ -17,8 +17,8 @@ export const Balance = () => {
     }, [balance]);
 
     return (
-        <div className="flex mt-4">
-            <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-sm">
+        <div className="flex mt-4 justify-center ">
+            <div className="shadow-lg rounded-lg p-6 w-full max-w-sm bg-white">
                 <div className="flex items-center gap-3">
                     {/* Wallet Icon */}
                     <FaWallet className="text-blue-500 text-4xl" />

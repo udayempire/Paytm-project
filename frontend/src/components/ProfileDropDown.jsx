@@ -9,16 +9,16 @@ export function ProfileDropDown({ firstName, lastName, email }) {
             </div>
             <ul className="py-2 text-sm text-black" aria-labelledby="dropdownUserAvatarButton">
                 <li>
-                    <div className="block px-4 py-2 hover:bg-gray-300 cursor-pointer" onClick={() => {
+                    <div className="block px-4 py-2 hover:bg-gray-300 cursor-pointer font-medium" onClick={() => {
                         navigate(-1)
                     }}>Dashboard</div>
                 </li>
                 <li>
-                    <div className="block px-4 py-2 hover:bg-gray-300 cursor-pointer" onClick={() => { navigate("/profile?name=" + firstName) }}>Settings</div>
+                    <div className="block px-4 py-2 hover:bg-gray-300 cursor-pointer font-medium" onClick={() => { navigate("/profile?name=" + firstName) }}>Settings</div>
                 </li>
             </ul>
             <div className="py-2">
-                <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer" onClick={() => {
+                <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer font-semibold" onClick={() => {
                     localStorage.removeItem("token");
                     navigate("/signin");
                 }}>Log out</div>
