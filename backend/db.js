@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
-mongoose.connect("mongodb+srv://admin:uday6207592112@cluster0.ib11rsi.mongodb.net/paytm")
+dbUrl= process.env.DATABASE_URL;
+mongoose.connect(dbUrl)
 .then(()=>{console.log("Connected to MongoDb Successfully")})
 .catch(()=>{console.log("Failed Connecting to MongoDb")})
 

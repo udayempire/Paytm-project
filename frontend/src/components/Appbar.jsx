@@ -27,12 +27,12 @@ export const Appbar=()=> {
                     {firstName[0]}
                 </div>
             </div>
-            <Button onClick={()=>{
+            <Button className="bg-red-500" onClick={()=>{
                 localStorage.removeItem("token")
                 navigate("/signin")
             }}
 
-            label={"Logout"} className="m-2" />
+            label={"Logout"}  />
         </div>
     </div>
 }
