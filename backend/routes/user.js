@@ -128,7 +128,8 @@ router.get("/currentUser",authMiddleWare, async (req,res)=>{
     res.json({
     firstName:user.firstName,
     lastName:user.lastName,
-    username:user.username
+    username:user.username,
+    email:user.emailAddress
     })
 })
 router.get("/bulk", async (req, res) => {
