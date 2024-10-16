@@ -36,7 +36,7 @@ export const Signup = () => {
                 <InputBox label="Enter Username" placeholder="Username" onChange={e => {
                     setUsername(e.target.value)
                 }} />
-                <InputBox label="Enter Password" placeholder="Enter Password" onChange={e => {
+                <InputBox label="Enter Password" type="password" placeholder="Enter Password" onChange={e => {
                     setPassword(e.target.value)
                 }} />
 
